@@ -326,7 +326,7 @@ module ActiveRecord
                                         config.fetch(:statement_limit) { 1000 }
 
         if postgresql_version < 80200
-          raise "Your version of PostgreSQL (#{postgresql_version}) is too old, please upgrade!"
+          #raise "Your version of PostgreSQL (#{postgresql_version}) is too old, please upgrade!"
         end
 
         @local_tz = execute('SHOW TIME ZONE', 'SCHEMA').first["TimeZone"]
@@ -381,10 +381,10 @@ module ActiveRecord
 
       # Enable standard-conforming strings if available.
       def set_standard_conforming_strings
-        old, self.client_min_messages = client_min_messages, 'panic'
-        execute('SET standard_conforming_strings = on', 'SCHEMA') rescue nil
+        #old, self.client_min_messages = client_min_messages, 'panic'
+        #execute('SET standard_conforming_strings = on', 'SCHEMA') rescue nil
       ensure
-        self.client_min_messages = old
+        #self.client_min_messages = old
       end
 
       def supports_insert_with_returning?
@@ -894,12 +894,12 @@ module ActiveRecord
 
       # Returns the current client message level.
       def client_min_messages
-        query('SHOW client_min_messages', 'SCHEMA')[0][0]
+        #query('SHOW client_min_messages', 'SCHEMA')[0][0]
       end
 
       # Set the client message level.
       def client_min_messages=(level)
-        execute("SET client_min_messages TO '#{level}'", 'SCHEMA')
+        #execute("SET client_min_messages TO '#{level}'", 'SCHEMA')
       end
 
       # Returns the sequence name for a table's primary key or some other specified key.
@@ -1235,18 +1235,18 @@ module ActiveRecord
           if @config[:encoding]
             @connection.set_client_encoding(@config[:encoding])
           end
-          self.client_min_messages = @config[:min_messages] if @config[:min_messages]
-          self.schema_search_path = @config[:schema_search_path] || @config[:schema_order]
+          #self.client_min_messages = @config[:min_messages] if @config[:min_messages]
+          #self.schema_search_path = @config[:schema_search_path] || @config[:schema_order]
 
           # Use standard-conforming strings if available so we don't have to do the E'...' dance.
-          set_standard_conforming_strings
+          #set_standard_conforming_strings
 
           # If using Active Record's time zone support configure the connection to return
           # TIMESTAMP WITH ZONE types in UTC.
           if ActiveRecord::Base.default_timezone == :utc
-            execute("SET time zone 'UTC'", 'SCHEMA')
+            #execute("SET time zone 'UTC'", 'SCHEMA')
           elsif @local_tz
-            execute("SET time zone '#{@local_tz}'", 'SCHEMA')
+            #execute("SET time zone '#{@local_tz}'", 'SCHEMA')
           end
         end
 
