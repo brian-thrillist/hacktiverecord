@@ -1,0 +1,40 @@
+329c329
+<           raise "Your version of PostgreSQL (#{postgresql_version}) is too old, please upgrade!"
+---
+>           #raise "Your version of PostgreSQL (#{postgresql_version}) is too old, please upgrade!"
+384,385c384,385
+<         old, self.client_min_messages = client_min_messages, 'panic'
+<         execute('SET standard_conforming_strings = on', 'SCHEMA') rescue nil
+---
+>         #old, self.client_min_messages = client_min_messages, 'panic'
+>         #execute('SET standard_conforming_strings = on', 'SCHEMA') rescue nil
+387c387
+<         self.client_min_messages = old
+---
+>         #self.client_min_messages = old
+897c897
+<         query('SHOW client_min_messages', 'SCHEMA')[0][0]
+---
+>         #query('SHOW client_min_messages', 'SCHEMA')[0][0]
+902c902
+<         execute("SET client_min_messages TO '#{level}'", 'SCHEMA')
+---
+>         #execute("SET client_min_messages TO '#{level}'", 'SCHEMA')
+1238,1239c1238,1239
+<           self.client_min_messages = @config[:min_messages] if @config[:min_messages]
+<           self.schema_search_path = @config[:schema_search_path] || @config[:schema_order]
+---
+>           #self.client_min_messages = @config[:min_messages] if @config[:min_messages]
+>           #self.schema_search_path = @config[:schema_search_path] || @config[:schema_order]
+1242c1242
+<           set_standard_conforming_strings
+---
+>           #set_standard_conforming_strings
+1247c1247
+<             execute("SET time zone 'UTC'", 'SCHEMA')
+---
+>             #execute("SET time zone 'UTC'", 'SCHEMA')
+1249c1249
+<             execute("SET time zone '#{@local_tz}'", 'SCHEMA')
+---
+>             #execute("SET time zone '#{@local_tz}'", 'SCHEMA')
